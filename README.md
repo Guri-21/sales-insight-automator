@@ -163,6 +163,8 @@ The GitHub Actions pipeline (`.github/workflows/ci.yml`) triggers on:
 2. The `render.yaml` blueprint auto-configures the service
 3. Add `GROQ_API_KEY` and `RESEND_API_KEY` as environment variables
 
+> **Note on Cold Starts**: The backend API is hosted on Render's free tier. If the service has been inactive for 15 minutes, the very first file upload might take up to 60 seconds to process while the container wakes up from sleep state. All subsequent requests will process at normal high speeds.
+
 ### Frontend → Vercel
 1. Import the `frontend/` directory at [vercel.com](https://vercel.com)
 2. Set `VITE_API_URL` to your Render backend URL
