@@ -3,6 +3,8 @@
 > **Upload sales data → AI generates an executive brief → Delivered to your inbox.**
 > Built for the Rabbitt AI sales team to transform raw CSV/XLSX data into actionable intelligence.
 
+**👨‍💻 Built by: Gurnoor Partap Singh Bhogal**
+
 [![CI Pipeline](https://github.com/your-org/sales-insight-automator/actions/workflows/ci.yml/badge.svg)](https://github.com/your-org/sales-insight-automator/actions)
 
 ---
@@ -15,7 +17,7 @@
 │  Port 3000 / 5173  │ ◄─────────────────────  │  Port 8000         │
 └────────────────────┘    JSON response         ├────────────────────┤
                                                 │ 1. Parse CSV/XLSX  │
-                                                │ 2. Google Gemini   │
+                                                │ 2. Groq AI (Llama 3) │
                                                 │ 3. Send via Resend │
                                                 │ 4. Swagger @ /docs │
                                                 └────────────────────┘
@@ -25,7 +27,7 @@
 
 ### Prerequisites
 - Docker & Docker Compose
-- API keys: [Google Gemini](https://aistudio.google.com) + [Resend](https://resend.com)
+- API keys: [Groq](https://console.groq.com) + [Resend](https://resend.com)
 
 ### Steps
 
@@ -36,7 +38,7 @@ cd sales-insight-automator
 
 # 2. Configure environment
 cp .env.example .env
-# Edit .env and add your GEMINI_API_KEY and RESEND_API_KEY
+# Edit .env and add your GROQ_API_KEY and RESEND_API_KEY
 
 # 3. Start the stack
 docker-compose up --build
@@ -159,7 +161,7 @@ The GitHub Actions pipeline (`.github/workflows/ci.yml`) triggers on:
 ### Backend → Render
 1. Connect your GitHub repo at [render.com](https://render.com)
 2. The `render.yaml` blueprint auto-configures the service
-3. Add `GEMINI_API_KEY` and `RESEND_API_KEY` as environment variables
+3. Add `GROQ_API_KEY` and `RESEND_API_KEY` as environment variables
 
 ### Frontend → Vercel
 1. Import the `frontend/` directory at [vercel.com](https://vercel.com)
@@ -176,7 +178,7 @@ sales-insight-automator/
 │   ├── main.py                  # FastAPI app + endpoints
 │   ├── services/
 │   │   ├── file_parser.py       # CSV/XLSX parsing & validation
-│   │   ├── ai_service.py        # Google Gemini integration
+│   │   ├── ai_service.py        # Groq (Llama 3.3) integration
 │   │   └── email_service.py     # Resend email delivery
 │   ├── middleware/
 │   │   └── security.py          # Rate limiting, API key auth
@@ -214,7 +216,7 @@ See [`.env.example`](.env.example) for all configuration keys with descriptions.
 
 | Variable | Required | Description |
 |----------|----------|-------------|
-| `GEMINI_API_KEY` | ✅ | Google Gemini API key |
+| `GROQ_API_KEY` | ✅ | Groq API key |
 | `RESEND_API_KEY` | ✅ | Resend email service key |
 | `SENDER_EMAIL` | ❌ | Sender email (default: `onboarding@resend.dev`) |
 | `API_KEY_REQUIRED` | ❌ | Enable API key auth (default: `false`) |
