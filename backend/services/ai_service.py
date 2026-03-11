@@ -5,15 +5,16 @@ narrative summaries from parsed sales data.
 """
 
 import os
+
 import httpx
 from fastapi import HTTPException
 
-SYSTEM_PROMPT = """You are a senior business analyst at a top consulting firm. 
+SYSTEM_PROMPT = """You are a senior business analyst at a top consulting firm.
 Your job is to analyze raw sales data and produce a polished, executive-ready brief.
 
 Guidelines:
 - Write in a professional, confident tone suitable for C-suite executives.
-- Structure the summary with clear sections: Executive Summary, Key Metrics, 
+- Structure the summary with clear sections: Executive Summary, Key Metrics,
   Notable Trends, and Actionable Recommendations.
 - Use specific numbers and percentages from the data.
 - Highlight both positive performance and areas of concern.
@@ -37,7 +38,7 @@ async def generate_summary(data_text: str) -> str:
         )
 
     try:
-        prompt = f"""Analyze the following sales dataset and generate a professional 
+        prompt = f"""Analyze the following sales dataset and generate a professional
 executive brief summarizing the key insights:
 
 {data_text}

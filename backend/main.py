@@ -4,26 +4,27 @@ A FastAPI application that processes sales data files, generates AI summaries
 using Groq (Llama 3), and delivers them via email.
 """
 
-import os
 import logging
+import os
 from contextlib import asynccontextmanager
 
 from dotenv import load_dotenv
 
 load_dotenv()
 
-from fastapi import FastAPI, UploadFile, File, Form, Depends, Request
 from typing import Optional
+
+from email_validator import EmailNotValidError, validate_email
+from fastapi import Depends, FastAPI, File, Form, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
-from email_validator import validate_email, EmailNotValidError
 
 from middleware.security import limiter, verify_api_key
-from services.file_parser import validate_file, parse_file, dataframe_to_summary_text
 from services.ai_service import generate_summary
 from services.email_service import send_summary_email
+from services.file_parser import dataframe_to_summary_text, parse_file, validate_file
 
 # ── Logging ───────────────────────────────────────────────────
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")

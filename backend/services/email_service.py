@@ -5,6 +5,7 @@ Formats the summary into a professional HTML email template.
 """
 
 import os
+
 import resend
 from fastapi import HTTPException
 

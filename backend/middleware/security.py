@@ -4,12 +4,12 @@ Provides rate limiting, API key authentication, and request validation.
 """
 
 import os
-from typing import Optional, List
-from fastapi import Request, HTTPException, Security
+from typing import List, Optional
+
+from fastapi import HTTPException, Security
 from fastapi.security import APIKeyHeader
 from slowapi import Limiter
 from slowapi.util import get_remote_address
-
 
 # ── Rate Limiter ──────────────────────────────────────────────
 limiter = Limiter(key_func=get_remote_address)

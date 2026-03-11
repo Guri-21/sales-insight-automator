@@ -5,8 +5,9 @@ Includes validation for file type, size, and structure.
 """
 
 import io
+
 import pandas as pd
-from fastapi import UploadFile, HTTPException
+from fastapi import HTTPException, UploadFile
 
 # Maximum file size: 10 MB
 MAX_FILE_SIZE = 10 * 1024 * 1024

@@ -1,12 +1,12 @@
-[ruff]
+[tool.ruff]
 target-version = "py311"
 line-length = 100
 
-[ruff.lint]
+[tool.ruff.lint]
 select = ["E", "F", "I", "W"]
-ignore = ["E501"]
+ignore = ["E501", "E402"]
 
-[ruff.format]
+[tool.ruff.format]
 quote-style = "double"
 
 [tool.pytest.ini_options]

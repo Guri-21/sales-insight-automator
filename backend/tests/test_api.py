@@ -4,8 +4,9 @@ Tests for the Sales Insight Automator API.
 
 import io
 import os
+from unittest.mock import AsyncMock, patch
+
 import pytest
-from unittest.mock import patch, AsyncMock, MagicMock
 from fastapi.testclient import TestClient
 
 # Set env vars before importing app
@@ -123,8 +124,9 @@ class TestFileParser:
         assert list(df.columns) == ["name", "value"]
 
     def test_parse_invalid_csv(self):
-        from services.file_parser import parse_file
         from fastapi import HTTPException
+
+        from services.file_parser import parse_file
 
         # A single-column CSV should fail our 2-column minimum
         content = b"name\nAlpha\nBeta"
@@ -134,6 +136,7 @@ class TestFileParser:
 
     def test_dataframe_to_text(self):
         import pandas as pd
+
         from services.file_parser import dataframe_to_summary_text
 
         df = pd.DataFrame({"product": ["A", "B", "C"], "sales": [100, 200, 300]})
