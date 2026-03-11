@@ -225,6 +225,3 @@ See [`.env.example`](.env.example) for all configuration keys with descriptions.
 
 ---
 
-## 📝 License
-
-MIT — Built with ❤️ by the Rabbitt AI Engineering team.
