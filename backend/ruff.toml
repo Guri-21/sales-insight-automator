@@ -1,0 +1,14 @@
+[ruff]
+target-version = "py311"
+line-length = 100
+
+[ruff.lint]
+select = ["E", "F", "I", "W"]
+ignore = ["E501"]
+
+[ruff.format]
+quote-style = "double"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"

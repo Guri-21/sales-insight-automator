@@ -1,0 +1,26 @@
+# Render.com deployment blueprint for the backend API
+# Deploy at: https://render.com/docs/blueprint-spec
+
+services:
+  - type: web
+    name: sales-insight-automator-api
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GROQ_MODEL
+        value: llama-3.3-70b-versatile
+      - key: RESEND_API_KEY
+        sync: false
+      - key: SENDER_EMAIL
+        sync: false
+      - key: CORS_ORIGINS
+        value: https://sales-insight-automator.vercel.app
+      - key: API_KEY_REQUIRED
+        value: "false"
+      - key: ENV
+        value: production
